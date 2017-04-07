@@ -1,0 +1,10 @@
+{
+  "generator-jhipster-module": {
+    "promptValues": {
+      "githubName": "cesarreyesa",
+      "authorName": "Cesar Reyes",
+      "authorEmail": "cesarreyesa@gmail.com",
+      "authorUrl": "https://about.me/cesarreyesa"
+    }
+  }
+}
