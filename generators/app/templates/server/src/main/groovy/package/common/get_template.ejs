@@ -1,0 +1,9 @@
+<%  const instanceType = (dto == 'mapstruct') ? entityClass + 'DTO' : entityClass;
+    const instanceName = (dto == 'mapstruct') ? entityInstance + 'DTO' : entityInstance;
+    const mapper = entityInstance  + 'Mapper';
+    const entityToDto = mapper + '.'+ entityInstance +'To' + entityClass + 'DTO';
+    if (!viaService) {
+%>
+        <%= entityClass %> <%= entityInstance %> = <% if (databaseType == 'sql' || databaseType == 'mongodb') { %><%= entityInstance %>Repository.<% if (fieldsContainOwnerManyToMany == true) { %>findOneWithEagerRelationships<% } else { %>findOne<% } %>(id)<% } %><% if (databaseType == 'cassandra') { %><%= entityInstance %>Repository.findOne(UUID.fromString(id))<% } %>;<% if (dto == 'mapstruct') { %>
+        <%= instanceType %> <%= instanceName %> = <%= entityToDto %>(<%= entityInstance %>);<% } } else { %>
+        <%= instanceType %> <%= instanceName %> = <%= entityInstance %>Service.findOne(id);<% } %>
